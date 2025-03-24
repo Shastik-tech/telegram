@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shastik.uz - Aloqa uchun</title>
+    <meta name="description" content="Shastik.uz - Diyorbek Asatullayev bilan bog‘lanish sahifasi. Telegram orqali xabar yuboring!">
+    <meta name="keywords" content="Shastik, aloqa, bog‘lanish, telegram, Diyorbek Asatullayev">
+    <meta name="author" content="Shastik">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1f1f1f, #3a3a3a);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 500px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        input, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input {
+            background: #333;
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+        input:focus {
+            background: #444;
+        }
+        button {
+            background: linear-gradient(135deg, #ff007f, #ff4d4d);
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #ff4d4d, #ff007f);
+        }
+        .tech-images {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .tech-images img {
+            width: 150px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <h1>Shastik.uz - Aloqa uchun</h1>
+    <div class="tech-images">
+        <img src="https://source.unsplash.com/150x100/?technology" alt="Texnologiya">
+        <img src="https://source.unsplash.com/150x100/?coding" alt="Kod yozish">
+        <img src="https://source.unsplash.com/150x100/?innovation" alt="Innovatsiya">
+    </div>
+    <div class="container">
+        <form id="contactForm">
+            <input type="text" id="name" placeholder="Ismingiz" required>
+            <input type="text" id="surname" placeholder="Familiyangiz" required>
+            <input type="number" id="age" placeholder="Yoshingiz" required>
+            <input type="email" id="email" placeholder="Emailingiz" required>
+            <input type="tel" id="phone" placeholder="Telefon raqamingiz" required>
+            <button type="submit">Jo'natish</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let name = document.getElementById("name").value;
+            let surname = document.getElementById("surname").value;
+            let age = document.getElementById("age").value;
+            let email = document.getElementById("email").value;
+            let phone = document.getElementById("phone").value;
+            
+            let message = `📩 *Yangi murojaat!*
+            
+👤 *Ism:* ${name}
+👨‍👩‍👧‍👦 *Familiya:* ${surname}
+🎂 *Yosh:* ${age}
+📧 *Email:* ${email}
+📱 *Telefon:* ${phone}`;
+            
+            let telegramBotToken = "7511535415:AAFPIhQ6p3J7T5yNHCcPn_zccnFhgov_MyE";
+            let chatId = "5308930411";
+            
+            let url = `https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=Markdown`;
+            
+            fetch(url).then(response => {
+                if (response.ok) {
+                    alert("Xabar muvaffaqiyatli yuborildi!");
+                } else {
+                    alert("Xatolik yuz berdi!");
+                }
+            }).catch(error => alert("Xatolik yuz berdi!"));
+        });
+    </script>
+</body>
+</html>
